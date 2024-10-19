@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diamond Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('wp13335840-diamond-hd-wallpapers.jpg'); /* online background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            background-size: 400px;
+            padding: 0;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+          
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            max-width: 350px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        select {
+            appearance: none;
+            background: transparent;
+            padding-right: 25px;
+            background-image: url('down-arrow.png');
+            background-position: right center;
+            background-repeat: no-repeat;
+        }
+        input[type="submit"] {
+            background-color: black; /* Change to black */
+            color: white;
+            padding: 12px 20px; /* Increase padding for length */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%; /* Full width */
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #444; /* Darker on hover */
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .form-header {
+    overflow: hidden; /* Hide the overflow */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+h1 {
+    display: inline-block; /* Allow sliding effect */
+    position: relative; /* Necessary for the animation */
+    animation: slideIn 2s forwards; /* Slide-in animation */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(30%); /* Start from the right */
+        opacity: 0; /* Fade in */
+    }
+    to {
+        transform: translateX(0); /* End at original position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="form-header" style="color: white; font-family: 'Times New Roman', Times, serif; text-align: center;">
+        <h1>Unlock the Brilliance: Predict Your Diamond's Worth!</h1>
+    </div>
+    
+    <div class="form-container">
+        
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+            <div class="form-group">
+                <label for="carat">Carat:</label>
+                <input type="text" id="carat" name="carat" placeholder="Enter carat value (float)">
+            </div>
+            
+            <div class="form-group">
+                <label for="depth">Depth:</label>
+                <input type="text" id="depth" name="depth" placeholder="Enter depth value (float)">
+            </div>
+            
+            <div class="form-group">
+                <label for="table">Table:</label>
+                <input type="text" id="table" name="table" placeholder="Enter table value (float)">
+            </div>
+            <div class="form-group">
+                <label for="cut">Cut:</label>
+                <select id="cut" name="cut">
+                    <option value="Fair">Fair</option>
+                    <option value="Good">Good</option>
+                    <option value="Very Good">Very Good</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Ideal">Ideal</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <select id="color" name="color">
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                    <option value="J">J</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="clarity">Clarity:</label>
+                <select id="clarity" name="clarity">
+                    <option value="I1">I1</option>
+                    <option value="SI2">SI2</option>
+                    <option value="SI1">SI1</option>
+                    <option value="VS2">VS2</option>
+                    <option value="VS1">VS1</option>
+                    <option value="VVS2">VVS2</option>
+                    <option value="VVS1">VVS1</option>
+                    <option value="IF">IF</option>
+                </select>
+            </div>
+            
+            <div style="clear:both;"></div>
+            <input type="submit" value="Predict">
+        </form>
+        <div class="result">
+            
+    </div>
+</body>
+</html>
