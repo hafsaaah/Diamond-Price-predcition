@@ -12,8 +12,12 @@ with open('preprocessor.pkl', 'rb') as f:
 with open('xgb_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-# Route to render HTML form
 @app.route('/')
+def welcome():
+    return render_template('front.html')
+
+# Route to render HTML form
+@app.route('/form')
 def home():
     return render_template('index.html')
 
@@ -38,8 +42,8 @@ def predict_datapoint():
     # Make the prediction using the saved model
     prediction = model.predict(processed_data)
 
-    # Return the result (rounded to 2 decimal places)
-    return f"The predicted price of the diamond is: ${round(prediction[0], 2)}"
+    # Render the result page and pass the prediction value
+    return render_template('result.html', price=round(prediction[0], 2))
 
 if __name__ == '__main__':
     app.run(debug=True)

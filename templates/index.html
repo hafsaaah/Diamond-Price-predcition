@@ -3,6 +3,36 @@
 <head>
     <title>Diamond Prediction</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        function validateForm() {
+            var carat = document.getElementById("carat").value;
+            var depth = document.getElementById("depth").value;
+            var table = document.getElementById("table").value;
+            var cut = document.getElementById("cut").value;
+            var color = document.getElementById("color").value;
+            var clarity = document.getElementById("clarity").value;
+            
+            // Check if any required field is empty
+            if (carat === "" || depth === "" || table === "" || cut === "" || color === "" || clarity === "") {
+                alert("All fields must be filled out.");
+                return false;
+            }
+
+            // Validate numeric fields (carat, depth, table)
+            if (isNaN(carat)) {
+                alert("Carat must be numeric values.");
+                return false;
+            }
+            else if(isNaN(depth)) {
+                alert("Depth must be numeric values")
+            }
+            else if(isNaN(table)) {
+                alert("Table must be numeric values")
+            }
+
+            return true; // If validation passes, allow the form to be submitted
+        }
+    </script>
 </head>
 <body>
     <div class="form-header" style="color: white; font-family: 'Times New Roman', Times, serif; text-align: center;">
@@ -10,8 +40,7 @@
     </div>
     
     <div class="form-container">
-        
-        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+        <form action="{{ url_for('predict_datapoint') }}" method="POST" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="carat">Carat:</label>
                 <input type="text" id="carat" name="carat" placeholder="Enter carat value (float)">
@@ -26,6 +55,7 @@
                 <label for="table">Table:</label>
                 <input type="text" id="table" name="table" placeholder="Enter table value (float)">
             </div>
+
             <div class="form-group">
                 <label for="cut">Cut:</label>
                 <select id="cut" name="cut">
@@ -68,7 +98,7 @@
             <input type="submit" value="Predict">
         </form>
         <div class="result">
-            
+        </div>
     </div>
 </body>
 </html>
